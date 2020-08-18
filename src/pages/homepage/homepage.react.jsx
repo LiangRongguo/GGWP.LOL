@@ -13,7 +13,7 @@ const HomePage = () => {
           height: "600px",
           backgroundImage: `url(${imageUrl})`,
         }}
-      ></div>
+      />
       <span className="title">Welcome to Summoner's Rift</span>
     </div>
   );
