@@ -1,0 +1,14 @@
+.ChampionsTab {
+  flex-direction: column;
+  align-items: center;
+  margin-left: 80px;
+
+  .PositionTab {
+    font-weight: bold;
+  }
+
+  .FreeRotationTab {
+    font-weight: bold;
+    color: #006aff;
+  }
+}
