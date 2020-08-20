@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from "./components/header/header.react";
 import HomePage from "./pages/homepage/homepage.react";
 import ChampionsPage from "./pages/champions/championsPage.react";
+import ScrollTop from "./components/scroll/scrollTop.react";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/champions" component={ChampionsPage} />
           </Switch>
+          <ScrollTop showBelow={250} />
         </div>
       </div>
     );

@@ -6,7 +6,6 @@ import { getImageUrl } from "../commons";
 import "./championsPreview.styles.scss";
 
 const ChampionsPreview = ({ champion }) => {
-  console.log(`url(${getImageUrl(champion.id)})`);
   return (
     <>
       <Link className="champion-preview" to={`/champions/${champion.id}`}>
