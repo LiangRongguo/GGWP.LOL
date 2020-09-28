@@ -1,0 +1,29 @@
+.header {
+  flex-grow: 1;
+
+  .homeButton {
+    margin-right: 10px;
+  }
+
+  .title {
+    flex-grow: 1;
+  }
+
+  .options {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
