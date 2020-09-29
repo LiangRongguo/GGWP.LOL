@@ -21,7 +21,10 @@
   }
 
   &.google-sign-in {
+    min-width: 200px;
+    padding: 0 20px 0 20px;
     background-color: #006aff;
+    font-size: 13px;
     color: white;
 
     &:hover {

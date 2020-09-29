@@ -6,7 +6,7 @@ import HomePage from "./pages/homepage/homepage.react";
 import ChampionsPage from "./pages/champions/championsPage.react";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import ScrollTop from "./components/scroll/scrollTop.react";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.css";
 
@@ -22,10 +22,33 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        // subscriobe to this userRef for any change to this data
+        // also get back the first state of the data
+        userRef.onSnapshot((snapShot) => {
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            },
+            () => {
+              /**
+               * uncomment this for DEBUG
+               */
+              // setState is async, so we need to use a CallBack function to log the state
+              // console.log(this.state);
+            }
+          );
+        });
+      }
+
+      // when signing out, set the state to NULL
+      this.setState({ currentUser: userAuth });
     });
   }
 
