@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/storage";
 import "firebase/auth";
 
 const config = {
@@ -31,11 +32,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     const { displayName, email } = userAuth; // user name
     const create_time = new Date(); // creation date time
 
+    const summoner_name = ""; // default summoner name - empty
+
     try {
       await userRef.set({
         displayName,
         email,
         create_time,
+        summoner_name,
         ...additionalData,
       });
     } catch (error) {
@@ -56,3 +60,47 @@ provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
+
+var storageRef = firebase.storage().ref();;
+
+/**
+ * function to get the avatar for current user
+ * - if a summoner is bonded to the user, get the Summoner Avatar
+ * - If no summoer, get the default avatar
+ * @param user
+ */
+export const getSummonerAvatar = async (user) => {
+  // if no user, simply return
+  if (!user) return;
+
+  var defaultAvatarRef = storageRef.child('avatars/default_avatar.jpg');
+  var defaultAvatarUrl = defaultAvatarRef.getDownloadURL();
+
+  var summoner_name = user.summoner_name;
+
+  // if no summoner for this user, return default avatar url
+  if (summoner_name == null || summoner_name === "") {
+    console.log("no summoner")
+    return defaultAvatarUrl;
+  }
+
+  var avatarRef = storageRef.child('avatars/' + summoner_name + '_avatar.jpg')
+  var avatarUrl = await avatarRef.getDownloadURL().then(
+    url => {
+      console.log("found avatar for " + summoner_name);
+      console.log(url);
+      return url;
+    }).catch(error => {
+      switch (error.code) {
+        case 'storage/object-not-found':
+          // File doesn't exist
+          return defaultAvatarUrl;
+
+        default:
+          console.log(error.code); // DEBUG: print error code
+          return defaultAvatarUrl;
+      }
+    });
+
+  return avatarUrl;
+};

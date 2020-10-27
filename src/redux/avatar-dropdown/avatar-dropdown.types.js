@@ -1,0 +1,6 @@
+const AvatarDropdownTypes = {
+  TOGGLE_AVATAR_DROPDOWN_HIDDEN: 'TOGGLE_DROPDOWN_HIDDEN',
+  SET_AVATAR_DROPDOWN_HIDDEN: 'SET_DROPDOWN_HIDDEN'
+}
+
+export default AvatarDropdownTypes;

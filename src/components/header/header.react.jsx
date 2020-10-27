@@ -6,11 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import SummonerAvatar from "../summoner-avatar/summoner-avatar.component";
+import SummonerAvatarDropdown from "../summoner-avatar-dropdown/summoner-avatar-dropdown.component";
+
 import "./header.styles.scss";
 
-import { auth } from "../../firebase/firebase.utils";
-
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <AppBar position="fixed" color="primary">
       <Toolbar>
@@ -41,8 +42,8 @@ const Header = ({ currentUser }) => (
             SUMMONER
           </Link>
           {currentUser ? (
-            <div className="option" onClick={() => auth.signOut()}>
-              SIGN OUT
+            <div className="avatar">
+              <SummonerAvatar />{" "}
             </div>
           ) : (
             <Link className="option" to="/signin">
@@ -52,11 +53,16 @@ const Header = ({ currentUser }) => (
         </div>
       </Toolbar>
     </AppBar>
+    {hidden ? null : <SummonerAvatarDropdown />}
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({
+  user: { currentUser },
+  avatar_dropdown: { hidden },
+}) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
