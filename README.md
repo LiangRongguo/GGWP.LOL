@@ -20,5 +20,5 @@ By September 2020, I am using `node.js 12.18.4` and `npm 6.14.8`
 ## Development Log:
 10/27/2020: 
 - Learnt how to download(get download URL)/uplaod images from/to the firestorage
-- Initialized the Summoner-Avatar dropdown menu, where user can see their display name, can be taken to the summoner page and can sign out.(I hate playing with SCSS🤣)
+- Initialized the Summoner-Avatar dropdown menu, where user can see their display name, be taken to the summoner page and sign out.(I hate playing with SCSS🤣)
  ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201027_update.png) 
