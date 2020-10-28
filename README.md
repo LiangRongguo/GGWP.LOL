@@ -23,5 +23,5 @@ By September 2020, I am using `node.js 12.18.4` and `npm 6.14.8`
 10/27/2020: 
 - Learnt how to download(get download URL)/uplaod images from/to the firestorage
 - Initialized the Summoner-Avatar dropdown menu, where user can see their display name, be taken to the summoner page and sign out.(I hate playing with SCSS🤣)
-- **TODO:** When we log in for the first time, the summoner avatar is the default one though we have successfully fetched the summoner avatar for the user. After we refresh the page, the right avatar is displayed. Guess this has something to do with the React lift cycle.
+- **TODO:** When we log in for the first time, the summoner avatar is the default one though we have successfully fetched the summoner avatar for the user. After we refresh the page, the proper avatar is displayed. Guess this has something to do with the React life cycle.
  ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201027_update.png) 
