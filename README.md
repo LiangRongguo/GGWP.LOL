@@ -1,3 +1,5 @@
+![title_logo](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/title.png)
+
 ## Introduction
 Hey😜, welcome to my League of Legend project, named **GGWP.LOL**. This name is from the commonly used phrase in LOL and is used when the game is over to express "good game, well played".
 
