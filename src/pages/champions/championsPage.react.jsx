@@ -5,6 +5,8 @@ import Tab from "@material-ui/core/Tab";
 import ChampionsGrid from "../../components/champions-grid/championsGrid.react";
 import { champions_data, tabIndexToCategory } from "../../components/commons";
 
+import { getFreeRotationChamp } from "../../firebase/firebase.utils";
+
 import "./championsPage.styles.scss";
 
 function TabPanel(props) {
@@ -29,15 +31,23 @@ class championsPage extends Component {
     this.state = { value: 0, selected_champions: champions_data };
   }
 
-  _handleSeletecTabChange = (event, newValue) => {
+  _handleSeletecTabChange = async (event, newValue) => {
+    // fetch free rotation champions
+    const free_rotation_champ = await getFreeRotationChamp();
+
     // filter champions by selected tab
     const selected_champions =
       newValue === 0
         ? champions_data
+        : newValue === 6
+        ? champions_data.filter(
+            (champion) => free_rotation_champ.indexOf(champion.id) !== -1
+          )
         : champions_data.filter(
             (champion) =>
               champion.position.indexOf(tabIndexToCategory[newValue]) !== -1
           );
+
     this.setState({ value: newValue, selected_champions });
   };
 
@@ -91,7 +101,9 @@ class championsPage extends Component {
           ></ChampionsGrid>
         </TabPanel>
         <TabPanel selectedIndex={this.state.value} index={6}>
-          Free Rotation
+          <ChampionsGrid
+            champions={this.state.selected_champions}
+          ></ChampionsGrid>
         </TabPanel>
       </div>
     );

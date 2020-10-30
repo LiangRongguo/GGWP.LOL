@@ -61,7 +61,7 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
 
-var storageRef = firebase.storage().ref();;
+var storageRef = firebase.storage().ref();
 
 /**
  * function to get the avatar for current user
@@ -73,26 +73,28 @@ export const getSummonerAvatar = async (user) => {
   // if no user, simply return
   if (!user) return;
 
-  var defaultAvatarRef = storageRef.child('avatars/default_avatar.jpg');
+  var defaultAvatarRef = storageRef.child("avatars/default_avatar.jpg");
   var defaultAvatarUrl = defaultAvatarRef.getDownloadURL();
 
   var summoner_name = user.summoner_name;
 
   // if no summoner for this user, return default avatar url
   if (summoner_name == null || summoner_name === "") {
-    console.log("no summoner")
+    console.log("no summoner");
     return defaultAvatarUrl;
   }
 
-  var avatarRef = storageRef.child('avatars/' + summoner_name + '_avatar.jpg')
-  var avatarUrl = await avatarRef.getDownloadURL().then(
-    url => {
+  var avatarRef = storageRef.child("avatars/" + summoner_name + "_avatar.jpg");
+  var avatarUrl = await avatarRef
+    .getDownloadURL()
+    .then((url) => {
       console.log("found avatar for " + summoner_name);
       console.log(url);
       return url;
-    }).catch(error => {
+    })
+    .catch((error) => {
       switch (error.code) {
-        case 'storage/object-not-found':
+        case "storage/object-not-found":
           // File doesn't exist
           return defaultAvatarUrl;
 
@@ -103,4 +105,14 @@ export const getSummonerAvatar = async (user) => {
     });
 
   return avatarUrl;
+};
+
+/**
+ * function to get the free rotation champions
+ */
+export const getFreeRotationChamp = async () => {
+  const freeRotationChampRef = firestore.doc("champions/Ha4FoexVkLFVAGDIeaH0");
+  const freeRotationChampSnapShot = await freeRotationChampRef.get();
+
+  return freeRotationChampSnapShot.data().free_rotation;
 };
