@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import Header from "./components/header/header.react";
 import HomePage from "./pages/homepage/homepage.react";
+import SummonerGeneralPage from "./pages/summoner/summoner-general-page.component";
+import SummonerSpecificPage from "./pages/summoner/summoner-specific-page.component";
 import ChampionsPage from "./pages/champions/championsPage.react";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import ScrollTop from "./components/scroll/scrollTop.react";
@@ -48,6 +50,15 @@ class App extends Component {
         <div className="MainPage">
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/summoner/:summoner_name" render={() =>
+              this.props.currentUser ? (
+                <SummonerSpecificPage />
+              ) : (
+                  <div /> // wait until We have successfully signedin with Firebase Auth
+                  // we can use a Loading icon for this
+                )
+            } />
+            <Route path="/summoner" component={SummonerGeneralPage} />
             <Route path="/champions" component={ChampionsPage} />
             <Route
               exact
@@ -56,8 +67,8 @@ class App extends Component {
                 this.props.currentUser ? (
                   <Redirect to="/" />
                 ) : (
-                  <SignInAndSignUpPage />
-                )
+                    <SignInAndSignUpPage />
+                  )
               }
             />
           </Switch>

@@ -51,14 +51,19 @@ const AvatarDropdown = ({ currentUser, setAvatarDropdownHidden }) => {
         <span className="row2">{currentUser.displayName}</span>
       </div>
 
-      <div className="option-row" to="/summoner">
+      <div className="option-row">
         <AccountCircleIcon className="icon" color="action" />
         <Link
           className="long-option"
           onClick={() => {
             setAvatarDropdownHidden();
           }}
-          to="/summoner"
+          to={`/summoner${
+            currentUser.summoner_name == null ||
+            currentUser.summoner_name === ""
+              ? ""
+              : "/" + currentUser.summoner_name
+          }`}
         >
           Manage Summoner
         </Link>
