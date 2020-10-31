@@ -20,16 +20,22 @@ By September 2020, I am using `node.js 12.18.4` and `npm 6.14.8`
 
 
 ## Development Log:
-10/27/2020: 
+10/27/2020: Summoner Avatar and dropdown menu
 - Learnt how to download(get download URL)/uplaod images from/to the firestorage
 - Initialized the Summoner-Avatar dropdown menu, where user can see their display name, be taken to the summoner page and sign out.(I hate playing with SCSS🤣)
 - **TODO(SOLVED):** When we log in for the first time, the summoner avatar is the default one though we have successfully fetched the summoner avatar for the user. After we refresh the page, the proper avatar is displayed. Guess this has something to do with the React life cycle. (SOLVED: magically dispeared..🤣)
  ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201027_update.png) 
  
- 10/30/2020: 
+ 10/30/2020: Fetch free rotation champions
  - Learnt how to fetch data (here we fetch an array for free rotation) from firebase.
  - Implemented the function to fetch data from firebase
  - Completed the function to display free rotation champions in the free rotation tab.
  - **Considering** moving all champions data to Firebase, instead of storing them in a constant js variable
   ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201030_update.png) 
+
+10/30/2020: Summoner detail page initialization
+- Learnt declarative routing in React
+- Direct user to general/specific summoner page based on logged in or not.
+- **TODO** map out the logic for the summoner detail page. The goal is 3 functionalities: Queuing any summoner, viewing user's summoner information and managing user's summoner.
+  ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201030_update1.png) 
 
