@@ -30,6 +30,6 @@ By September 2020, I am using `node.js 12.18.4` and `npm 6.14.8`
  - Learnt how to fetch data (here we fetch an array for free rotation) from firebase.
  - Implemented the function to fetch data from firebase
  - Completed the function to display free rotation champions in the free rotation tab.
- - **Considering** moving all champions data to the firebase, instead of storing them in a constant js variable
+ - **Considering** moving all champions data to Firebase, instead of storing them in a constant js variable
   ![image1](https://github.com/LiangRongguo/GGWP.LOL/blob/master/readme_resource/20201030_update.png) 
 
